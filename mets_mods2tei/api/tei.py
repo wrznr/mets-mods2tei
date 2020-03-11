@@ -18,6 +18,26 @@ ns = {
 TEI = "{%s}" % ns['tei']
 ALTO = "{%s}" % ns['alto']
 
+class Strukturdatenset2biblType:
+
+    def __init__(self):
+        """
+        The constructor.
+        """
+        self.map = {}
+        filep = open(os.path.realpath(resource_filename(Requirement.parse("mets_mods2tei"), 'mets_mods2tei/data/strukturdatenset2bibl.txt')))
+        for line in filep:
+            fields = line.strip().split("\t")
+            self.map[fields[0]] = fields[1]
+        filep.close()
+
+    def get(self, elem):
+        """
+        Return an allowed bibl@type value for the given element of the DFG-viewer Strukturdatenset
+        :param str: An element of the DFG-viewer-Strukturdatenset
+        """
+        return self.map.get(elem, "M")
+
 class Tei:
 
     def __init__(self):

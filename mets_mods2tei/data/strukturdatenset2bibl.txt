@@ -1,0 +1,3 @@
+newspaper	J
+monograph	M
+multivolume_work	MM
